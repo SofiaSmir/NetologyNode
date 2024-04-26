@@ -1,0 +1,228 @@
+//hw 1.1
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker images
+REPOSITORY                 TAG       IMAGE ID       CREATED        SIZE
+node                       latest    9ed275c85047   28 hours ago   1.1GB
+mongo-express              latest    0eec10060d2f   35 hours ago   182MB
+alpine                     latest    05455a08881e   2 months ago   7.38MB
+docker/welcome-to-docker   latest    c1f619b6477e   5 months ago   18.6MB
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+7b2699543f22: Pull complete
+Digest: sha256:c3839dd800b9eb7603340509769c43e146a74c63dca3045a8e7dc8ee07e53966
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview busybox
+
+  smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker run busybox ping -c 7 netology.ru
+PING netology.ru (104.22.40.171): 56 data bytes
+64 bytes from 104.22.40.171: seq=0 ttl=63 time=10.555 ms
+64 bytes from 104.22.40.171: seq=1 ttl=63 time=17.251 ms
+64 bytes from 104.22.40.171: seq=2 ttl=63 time=6.459 ms
+64 bytes from 104.22.40.171: seq=3 ttl=63 time=6.588 ms
+64 bytes from 104.22.40.171: seq=4 ttl=63 time=16.605 ms
+64 bytes from 104.22.40.171: seq=5 ttl=63 time=11.413 ms
+64 bytes from 104.22.40.171: seq=6 ttl=63 time=30.139 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 6.459/14.144/30.139 ms
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                      PORTS     NAMES
+28af6d3298e3   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) 55 seconds ago             cool_carver
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker logs 28af
+PING netology.ru (104.22.40.171): 56 data bytes
+64 bytes from 104.22.40.171: seq=0 ttl=63 time=10.555 ms
+64 bytes from 104.22.40.171: seq=1 ttl=63 time=17.251 ms
+64 bytes from 104.22.40.171: seq=2 ttl=63 time=6.459 ms
+64 bytes from 104.22.40.171: seq=3 ttl=63 time=6.588 ms
+64 bytes from 104.22.40.171: seq=4 ttl=63 time=16.605 ms
+64 bytes from 104.22.40.171: seq=5 ttl=63 time=11.413 ms
+64 bytes from 104.22.40.171: seq=6 ttl=63 time=30.139 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 6.459/14.144/30.139 ms
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker run pinger
+Unable to find image 'pinger:latest' locally
+docker: Error response from daemon: pull access denied for pinger, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker rm -f 28af
+28af
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker images
+REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+node                       latest    9ed275c85047   28 hours ago    1.1GB
+mongo-express              latest    0eec10060d2f   35 hours ago    182MB
+alpine                     latest    05455a08881e   2 months ago    7.38MB
+docker/welcome-to-docker   latest    c1f619b6477e   5 months ago    18.6MB
+busybox                    latest    ba5dc23f65d4   11 months ago   4.26MB
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker run --name pinger busybox:latest
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker run --name pinger busybox:latest
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps -a
+CONTAINER ID   IMAGE            COMMAND   CREATED          STATUS                      PORTS     NAMES
+0f1de68347ca   busybox:latest   "sh"      53 seconds ago   Exited (0) 52 seconds ago             pinger
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker logs pinger
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker ps -a
+CONTAINER ID   IMAGE            COMMAND   CREATED         STATUS                     PORTS     NAMES
+0f1de68347ca   busybox:latest   "sh"      2 minutes ago   Exited (0) 2 minutes ago             pinger
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker rm pinger
+pinger
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docerk delete busybox
+bash: docerk: command not found
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker delete busybox:latest
+docker: 'delete' is not a docker command.
+See 'docker --help'
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker rmi busybox:latest
+Untagged: busybox:latest
+Untagged: busybox@sha256:c3839dd800b9eb7603340509769c43e146a74c63dca3045a8e7dc8ee07e53966
+Deleted: sha256:ba5dc23f65d4cc4a4535bce55cf9e63b068eb02946e3422d3587e8ce803b6aab
+Deleted: sha256:95c4a60383f7b6eb6f7b8e153a07cd6e896de0476763bef39d0f6cf3400624bd
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$
+
+
+
+
+//hw 1.2
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker pull node:latest
+latest: Pulling from library/node
+1468e7ff95fc: Pull complete
+2cf9c2b42f41: Pull complete
+c4c40c3e3cdf: Pull complete
+c05cc1123d7e: Pull complete
+04f2356c02d2: Pull complete
+fd0103e43e65: Pull complete
+8a7c6202e2f9: Pull complete
+82cce69906c7: Pull complete
+Digest: sha256:bda531283f4bafd1cb41294493de89ae3c4cf55933da14710e46df970e77365e
+Status: Downloaded newer image for node:latest
+docker.io/library/node:latest
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview node:latest
+
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker run --rm -it -e NAME=sofia -e SURNAME=smirnova  node:latest
+Welcome to Node.js v21.7.3.
+Type ".help" for more information.
+> console.log(`Привет, ${process.env.NAME} ${process.env.SURNAME}!`)
+Привет, sofia smirnova!
+undefined
+>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+>
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker rmi node:latest
+Untagged: node:latest
+Untagged: node@sha256:bda531283f4bafd1cb41294493de89ae3c4cf55933da14710e46df970e77365e     
+Deleted: sha256:9ed275c850471e0001d4ad56967891bfa0640e0c7631297f07ca78f885716a32
+Deleted: sha256:f21fbbcf97807b4e0a1fdfb844c43eb581ef9368eaf180127c6bfead0b9f24e0
+Deleted: sha256:0e61859058b94040c6470c18d0d6ca4ce1b15532076ff00f3de521b428b820c9
+Deleted: sha256:3d8b424e2c00157dad4f8914f8a8064c41c5ed14512db8b9dd91a10e454a9849
+Deleted: sha256:d3fb96d9acb6e6d933e3728b4ad5b940bb46bf1d94944ee3424f735c4b3a64c6
+Deleted: sha256:41a13d456d84469e658d82f10bd734f302daab6f65c4cae441299b4a03d3a123
+Deleted: sha256:b970d87779b54a60898c739c0545a878abca1dc0baabbdc74e5645782b20ef5d
+Deleted: sha256:609a42498e5cd50cecf991708b09a6c29f321d00eccb994167d804b16af8a3dd
+Deleted: sha256:072686bcd3db19834cd1e0b1e18acf50b7876043f9c38d5308e5e579cbefa6be
+smir_@Polo MINGW64 ~/OneDrive/Bureau/learning/Netology
+$ docker images
+REPOSITORY                 TAG       IMAGE ID       CREATED        SIZE
+mongo-express              latest    0eec10060d2f   37 hours ago   182MB
+alpine                     latest    05455a08881e   2 months ago   7.38MB
+docker/welcome-to-docker   latest    c1f619b6477e   5 months ago   18.6MB
+
+
+
+//hw 1.3
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker run --rm -d -v ./data:/var/first/data node:latest sleep infinity
+97d71bd18b5b46d374e3ea72a15c3fd7c6c50ba5f6ccc7c49b70d9c0c8ad8bb2
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker run --rm -d -v ./data:/var/second/data node:latest sleep infinity 
+21b5310a454a9bf20cdc87f927f51ceff5ff81ba1888549052f004fb0ec9988c
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 97d71 ls /var/   
+backups  cache  first  lib  local  lock  log  mail  opt  run  spool  tmp
+
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 97d71 ls /var/fir
+st
+data
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 97d71 touch  var/first/data/test.txt 
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 97d71 touch  var/first/data/test2.txt 
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 97d71 ls var/first/data/              
+test.txt  test2.txt
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 21b53 ls /var
+backups  cache  lib  local  lock  log  mail  opt  run  second  spool  tmp
+
+What's next?
+  Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug 21b53
+  Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker exec -it 21b53 ls /var/second
+data
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker stop 21b53
+21b53
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker stop 97d71
+97d71
+
+
+//containers already delete case they were running with --rm
+
+C:\Users\smir_\OneDrive\Bureau\learning\Netology\Dockers>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
